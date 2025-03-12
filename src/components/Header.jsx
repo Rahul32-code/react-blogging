@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search, SearchIcon, X } from "lucide-react";
 import logo from "../assets/img/logo.png";
 import { menuList, Navigation } from "../../public/header.Related";
 import { Link } from "react-router-dom";
@@ -48,17 +48,21 @@ export default function Header() {
       </div>
       {/* Search input field */}
       <div
-        className="absolute right-70 top-30 p-5 rounded-lg"
+        className={`absolute top-25 p-5 rounded-lg transition-all duration-600 ease-in-out ${
+          searchVisible
+            ? "opacity-100 translate-x-0 scale-100 right-70"
+            : "opacity-0 translate-x-[100%] scale-0 right-60"
+        }`}
         style={{
           background: "rgba(255, 255, 255, 0.1)",
           backdropFilter: "blur(10px)",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", 
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
         <input
           type="text"
           placeholder="Search..."
-          className={`bg-transparent border rounded-full p-2 pl-8 focus:outline-none w-40 md:w-64 transition-all duration-500 ease-in-out ${
+          className={` relative bg-transparent border rounded-full p-2 pl-8 focus:outline-none w-40 md:w-64 transition-all duration-500 ease-in-out ${
             searchVisible
               ? "opacity-100 translate-x-0 scale-100"
               : "opacity-0 translate-x-[-100%] scale-0"
@@ -67,6 +71,15 @@ export default function Header() {
             transitionProperty: "opacity, transform", // Ensure only opacity and transform are animated
           }}
         />
+        <button
+          className={`absolute top-8 right-10 cursor-pointer transition-all duration-500 ease-in-out  ${
+            searchVisible
+              ? "opacity-100 translate-x-0 scale-100"
+              : "opacity-0 translate-x-[-100%] scale-0"
+          }`}
+        >
+          <SearchIcon size={20} />
+        </button>
       </div>
 
       {/* overlay mobile menu */}
