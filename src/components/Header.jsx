@@ -9,23 +9,29 @@ export default function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
   return (
-    <header className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 w-full bg-[#202026] text-white py-4 flex items-center justify-between sticky top-0 z-50">
+    <header className="px-4 h-25 md:px-8 lg:px-16 xl:px-32 2xl:px-64 w-full bg-[#202026] text-white py-4 flex items-center justify-between sticky top-0 z-50">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <div>
           <img src={logo} alt="Logo" className="h-8" />
         </div>
       </div>
-      <div className="hidden md:flex items-center space-x-4 ">
+
+      <div className="hidden md:flex items-center space-x-4">
         {/* Navigation */}
         {Navigation.map((item) => (
-          <Link
-            key={item.id}
-            to={item.to}
-            className="hover:text-gray-400 font-medium text-xl p-4"
-          >
-            {item.name}
-          </Link>
+          <div key={item.id} className="flex flex-col items-center space-x-2">
+            {/* Blue background for each navigation item */}
+            {/* <div className="h-1 w-full bg-blue-600 rounded-2xl"></div> */}
+            <div>
+              <Link
+                to={item.to}
+                className="hover:text-gray-400 font-medium text-xl p-4"
+              >
+                {item.name}
+              </Link>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -51,7 +57,7 @@ export default function Header() {
         className={`absolute top-25 p-5 rounded-lg transition-all duration-600 ease-in-out ${
           searchVisible
             ? "opacity-100 translate-x-0 scale-100 right-70"
-            : "opacity-0 translate-x-[100%] scale-0 right-60"
+            : "opacity-0 translate-x-[50%] scale-0 right-60"
         }`}
         style={{
           background: "rgba(255, 255, 255, 0.1)",
