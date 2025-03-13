@@ -36,13 +36,10 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      # Step 6: Install Netlify CLI
+      # Step 6: Install Netlify CLI properly
       - name: Install Netlify CLI
-        run: |
-          curl -sL https://github.com/netlify/cli/releases/download/v3.4.0/netlify-cli-linux-x64.tar.gz | tar xz
-          sudo mv netlify /usr/local/bin/netlify
+        run: npm install -g netlify-cli
 
       # Step 7: Deploy to Netlify
       - name: Deploy to Netlify
-        run: |
-          netlify deploy --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        run: netlify deploy --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
