@@ -4,14 +4,14 @@ name: React App CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Jab main branch pe push hoga, workflow chalega
+      - main # Jab main branch pe push hoga, workflow chalega
   pull_request:
     branches:
-      - main  # Jab main branch pe pull request hoga, workflow chalega
+      - main # Jab main branch pe pull request hoga, workflow chalega
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # Ye GitHub ka Ubuntu server pe run hoga
+    runs-on: ubuntu-latest # Ye GitHub ka Ubuntu server pe run hoga
 
     steps:
       # Step 1: Code ko checkout karen
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22.5.1'  # React app ke liye Node.js version
+          node-version: "22.5.1" # React app ke liye Node.js version
 
       # Step 3: Dependencies install karen
       - name: Install dependencies
@@ -40,7 +40,8 @@ jobs:
       - name: Install Netlify CLI
         run: |
           curl -LO https://github.com/netlify/cli/releases/download/v3.4.0/netlify-cli-linux-x64.zip
-          sudo mv netlify /usr/local/bin/netlify
+          unzip netlify-cli-linux-x64.zip
+           sudo mv netlify /usr/local/bin/netlify
 
       # Step 7: Deploy to Netlify
       - name: Deploy to Netlify
